@@ -67,7 +67,7 @@
                 </div>
                 <!-- Message list and contacts -->
                 <ul class="message-list scrollbar" id="contacts">
-                    <li v-for="(chat, index) in filteredContacts" :key="chat.id" class="user-image mb-1 py-2 contact">
+                    <li @click="chatSwitch(index)" v-for="(chat, index) in filteredContacts" :key="chat.id" :class="{ active: selectedChat === chat }" class="user-image mb-1 py-2 contact" @click="selectChat(chat)">
                         <img :src="getAvatarImagePath(chat.avatar)" alt="chat.name">
                         <span>{{ chat.name }}</span>
                     </li>
@@ -75,7 +75,53 @@
             </div>
             <!-- Col Chats -->
             <div class="col-chats">
-                
+                <div class="user-row">
+                    <div class="user-image">
+                        <img :src="getAvatarImagePath(contacts[activeChat].avatar)" alt="">
+                        <div class="infos">
+                            <span>{{ contacts[activeChat].name }}</span>
+                            <span id="access">Ultimo accesso oggi alle</span>
+                        </div>
+                    </div>
+                    <div class="icon-section">
+                        <div class="dropdown">
+                            <i class="fas fa-search icons" id="menu1Dropdown" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                            <ul class="dropdown-menu" aria-labelledby="menu1Dropdown">
+                                <li><a class="dropdown-item" href="#">Cerca messaggio</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown">
+                            <i class="fas fa-paperclip icons" id="menu2Dropdown" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                            <ul class="dropdown-menu" aria-labelledby="menu2Dropdown">
+                                <li><a class="dropdown-item" href="#">Aggiungi file</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown">
+                            <i class="fas fa-ellipsis-v icons" id="menu3Dropdown" data-bs-toggle="dropdown" aria-expanded="false"></i>                        
+                            <ul class="dropdown-menu" aria-labelledby="menu3Dropdown">
+                                <li><a class="dropdown-item" href="#">Elimina chat</a></li>
+                                <li><a class="dropdown-item" href="#">Elimina contatto</a></li>
+                                <li><a class="dropdown-item" href="#">Visualizza profilo</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="message-section">
+                    <div v-for="element in contacts[activeChat].messages" class="message">
+                        <div :class="element.status === 'received' ? 'received' :'sent'" class="message-box">
+                            <span  :class="(element.status === 'received' ? 'received-color':'sent-color') + ' message'" class="main-text">{{ element.message }}
+                                <span class="date">{{ element.date }}</span>
+                            </span> 
+                        </div>                 
+                    </div>
+                </div>
+                <div class="footer-rightcol">
+                    <i class="far fa-smile"></i>
+                    <div class="send-message">
+                        <input type="text" placeholder="  Scrivi un messaggio" v-model="newMessage" @keyup.enter= "sendNewMessage(); setTimeout();">
+                    </div>
+                    <i class="fas fa-microphone"></i>
+                </div>
             </div>
         </div>
     </main>

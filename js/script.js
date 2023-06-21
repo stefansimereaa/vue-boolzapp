@@ -8,7 +8,7 @@ const { createApp } = Vue;
 const app = createApp({
     data() {
         return {
-            openMenus: [],
+            activeChat: 0,
             showMenu1: false,
             newMessage: '',
             filtredContacts: '',
@@ -232,8 +232,40 @@ const app = createApp({
         // Funzione per controllare al click il toggle delle notifiche
         toggleNotificationsActive() {
             this.notificationsActive = !this.notificationsActive;
-          },
-    }
+            setTimeout(() => {
+                this.notificationsActive = false;
+            }, 1000);
+        },
+
+        // Funzione per selezionare la chat dai contatti
+        chatSwitch: function(index){
+            this.activeChat = index;
+        },
+
+        // Funzione per inviare un nuovo messaggio tramite l input
+        sendNewMessage() {
+            const activeChat = this.contacts[this.activeChat];
+            const newMessage = {
+              id: activeChat.messages.length + 1,
+              date: new Date().toLocaleString(),
+              message: this.newMessage,
+              status: 'sent'
+            };
+        activeChat.messages.push(newMessage);
+        this.newMessage = '';
+
+
+        // Funzione per inviare il messaggio ok dopo 1 secondo
+        const currentDate = new Date().toLocaleString();
+        setTimeout(() => {
+            activeChat.messages.push({
+              id: activeChat.messages.length + 1,
+              date: currentDate,
+              message: 'Ok',
+              status: 'received'
+            });
+          }, 1000);
+    }}
 });
 
 //Monto nell'elemento HTML "radice"
