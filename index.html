@@ -19,8 +19,13 @@
                 <!-- User row -->
                 <div class="user-row">
                     <div class="user-image">
-                        <img :src="user.avatar" alt="user.name">
+                        <img :src="getAvatarImagePath(user.avatar) + '.jpg' " alt="Nome Utente">
                         <span>{{user.name}}</span>
+                    </div>
+                    <div class="icon-section">
+                        <i class="fas fa-circle-notch icons"></i>
+                        <i class="fas fa-comment-alt icons"></i>
+                        <i class="fas fa-ellipsis-v icons"></i>                        
                     </div>
                 </div>
                 <!-- Notification row -->
@@ -31,24 +36,22 @@
                     <div class="infos">
                         <div id="notification-message" v-if="notificationsActive" class="notification-message">Notifiche desktop attivate!</div>
                         <span>Ricevi notifiche di nuovi messaggi</span>
-                        <span id="notification-text" @click="toggleNotifications">Attiva notifiche desktop</span>
+                        <span id="notification-text" @click="toggleNotificationsActive">Attiva notifiche desktop</span>
                     </div>
                 </div>                  
                 <!-- Search row messages -->
                 <div class="search-row">
-                    <nav class="navbar navbar-expand bg-body-tertiary">
-                        <div class="container-fluid">
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <form class="d-flex w-100" role="search">
-                                <input class="search-icon form-control me-2 w-100" type="search" placeholder="&#xf002;  Cerca o inizia una nuova chat" aria-label="Search">
-                            </form>
-                            </div>
-                        </div>
-                    </nav>
+                    <div class="search-bar">
+                        <span class="search-icon"><i class="fas fa-search"></i></span>
+                        <input v-model.trim="filtredContacts" @input="researchContacts" type="text" placeholder=" Cerca o inizia una nuova chat" />
+                    </div>
                 </div>
                 <!-- Message list and contacts -->
-                <ul class="message-list">
-                  <li></li>                                
+                <ul class="message-list" id="contacts">
+                    <li v-for="(chat, index) in filteredContacts" :key="chat.id" class="user-image mb-1 py-2 contact">
+                        <img :src="getAvatarImagePath(chat.avatar)" alt="chat.name">
+                        <span>{{ chat.name }}</span>
+                    </li>
                 </ul>
             </div>
             <!-- Col Chats -->

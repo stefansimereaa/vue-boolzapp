@@ -8,15 +8,19 @@ const { createApp } = Vue;
 const app = createApp({
     data() {
         return {
+            newMessage: '',
+            filtredContacts: '',
+            filteredContacts: [],
+            filtredMessages: '',
             user: {
-                name: 'Stefan Simerea',
-                avatar: 'img/avatar_io.jpg'
+                name: 'Nome Utente',
+                avatar: '_io'
             },
             contacts: [
                 {
                   id: 1,
                   name: 'Michele',
-                  avatar: '_1.jpg',
+                  avatar: '_1.png',
                   visible: true,
                   messages: [
                     {
@@ -204,16 +208,31 @@ const app = createApp({
                   ],
                 }
               ],
-            notificationsActive: false
+            notificationsActive: false,
         };
     },
+    computed: {
+        //Funzione per filtrare la ricerca attraverso la search bar per i contatti
+        researchContacts() {
+            const filtered = this.filtredContacts.toLowerCase();
+            this.filteredContacts = this.contacts.filter((contact) => {
+            return contact.name.toLowerCase().includes(filtered);
+            });
+        },
+    },
     methods: {
-        toggleNotifications() {
+        // Funzione per cambiare tipo immagine dei contacts
+        getAvatarImagePath(avatar) {
+            const imageName = avatar.replace('.png', '.jpg');
+            return 'img/avatar' + imageName;
+        },
+
+        // Funzione per controllare al click il toggle delle notifiche
+        toggleNotificationsActive() {
             this.notificationsActive = !this.notificationsActive;
-        }
+          },
     }
 });
-
 
 //Monto nell'elemento HTML "radice"
 app.mount('#root');
