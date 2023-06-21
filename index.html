@@ -14,19 +14,52 @@
 <body>
     <main>
         <div id="root" class="app-container">
-            
-    
-    
-    
-    
-    
-            
+            <!-- Col Contacts -->
+            <div class="col-contacts">
+                <!-- User row -->
+                <div class="user-row">
+                    <div class="user-image">
+                        <img :src="user.avatar" alt="user.name">
+                        <span>{{user.name}}</span>
+                    </div>
+                </div>
+                <!-- Notification row -->
+                <div class="notification-row">
+                    <div class="notification-icon">
+                      <i class="fas fa-bell-slash"></i>
+                    </div>
+                    <div class="infos">
+                        <div id="notification-message" v-if="notificationsActive" class="notification-message">Notifiche desktop attivate!</div>
+                        <span>Ricevi notifiche di nuovi messaggi</span>
+                        <span id="notification-text" @click="toggleNotifications">Attiva notifiche desktop</span>
+                    </div>
+                </div>                  
+                <!-- Search row messages -->
+                <div class="search-row">
+                    <nav class="navbar navbar-expand bg-body-tertiary">
+                        <div class="container-fluid">
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <form class="d-flex w-100" role="search">
+                                <input class="search-icon form-control me-2 w-100" type="search" placeholder="&#xf002;  Cerca o inizia una nuova chat" aria-label="Search">
+                            </form>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <!-- Message list and contacts -->
+                <ul class="message-list">
+                  <li></li>                                
+                </ul>
+            </div>
+            <!-- Col Chats -->
+            <div class="col-chats">
+
+            </div>
         </div>
     </main>
     <!-- VueJs -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <!-- JS -->
-    <script src="js/data.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>
