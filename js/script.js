@@ -8,6 +8,8 @@ const { createApp } = Vue;
 const app = createApp({
     data() {
         return {
+            openMenus: [],
+            showMenu1: false,
             newMessage: '',
             filtredContacts: '',
             filteredContacts: [],
