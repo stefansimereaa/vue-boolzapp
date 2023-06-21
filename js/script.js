@@ -254,7 +254,6 @@ const app = createApp({
         activeChat.messages.push(newMessage);
         this.newMessage = '';
 
-
         // Funzione per inviare il messaggio ok dopo 1 secondo
         const currentDate = new Date().toLocaleString();
         setTimeout(() => {
