@@ -13,7 +13,6 @@ const app = createApp({
             newMessage: '',
             filtredContacts: '',
             filteredContacts: [],
-            filtredMessages: '',
             user: {
                 name: 'Nome Utente',
                 avatar: '_io'
@@ -220,6 +219,27 @@ const app = createApp({
             this.filteredContacts = this.contacts.filter((contact) => {
             return contact.name.toLowerCase().includes(filtered);
             });
+        },
+        // Funzione per ottenere la data dell'ultimo messaggio
+        lastMessageDate() {
+          return this.contacts.map((contact) => {
+            const lastMessage = contact.messages[contact.messages.length - 1];
+            if (lastMessage) {
+              return lastMessage.date;
+            }
+            return '';
+          });
+        },
+
+        // Funzione per ottenere il testo dell'ultimo messaggio
+        lastMessageText() {
+          return this.contacts.map((contact) => {
+            const lastMessage = contact.messages[contact.messages.length - 1];
+            if (lastMessage) {
+              return lastMessage.message;
+            }
+            return '';
+          });
         },
     },
     methods: {

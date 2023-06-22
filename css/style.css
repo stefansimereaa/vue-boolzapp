@@ -31,9 +31,14 @@ main{
 .col-contacts{
     width: 30%;
     background-color: white;
+    max-height: calc(100vh - 120px);
 }
 .col-chats{
     width: 70%;
+}
+
+.scrollbar{
+    overflow-y: scroll;
 }
 
 /************/
@@ -158,13 +163,14 @@ main{
     height: 100%;
     list-style: none;
 }
-.scrollbar {
-    overflow-y: scroll;
-}
 
 #contacts{
     padding-left: 0rem;
     padding: 10px;
+}
+
+.last-message-date, .last-message-text{
+    font-size: 11px;
 }
 
 /* Hover contacts */
