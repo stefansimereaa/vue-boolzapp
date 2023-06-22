@@ -15,22 +15,23 @@
     <main>
         <div id="root" class="app-container">
             <!-- Col Contacts -->
-            <div class="col-contacts">
+            <section class="col-contacts sc">
                 <!-- User row -->
-                <div class="user-row">
+                <section class="user-row">
                     <div class="user-image">
-                        <img :src="getAvatarImagePath(user.avatar) + '.jpg' " alt="Nome Utente">
+                        <img :src="getAvatarImagePath(user.avatar) + '.jpg' " alt="user.name">
                         <span>{{user.name}}</span>
                     </div>
-                    <div class="icon-section">
+                    <!-- Icons User Row -->
+                    <section class="icon-section">
                         <div class="dropdown">
-                            <i class="fas fa-circle-notch icons" id="menu1Dropdown" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                            <i class="fas fa-circle-notch icons" id="menu1Dropdown" data-bs-toggle="dropdown" ></i>
                             <ul class="dropdown-menu" aria-labelledby="menu1Dropdown">
                                 <li><a class="dropdown-item" href="#">Nessuna Storia Disponibile</a></li>
                             </ul>
                         </div>
                         <div class="dropdown">
-                            <i class="fas fa-comment-alt icons" id="menu2Dropdown" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                            <i class="fas fa-comment-alt icons" id="menu2Dropdown" data-bs-toggle="dropdown"></i>
                             <ul class="dropdown-menu" aria-labelledby="menu2Dropdown">
                                 <li><a class="dropdown-item" href="#">Apri nuova chat</a></li>
                                 <li><a class="dropdown-item" href="#">Elimina tutte le chat</a></li>
@@ -38,17 +39,17 @@
                             </ul>
                         </div>
                         <div class="dropdown">
-                            <i class="fas fa-ellipsis-v icons" id="menu3Dropdown" data-bs-toggle="dropdown" aria-expanded="false"></i>                        
+                            <i class="fas fa-ellipsis-v icons" id="menu3Dropdown" data-bs-toggle="dropdown"></i>                        
                             <ul class="dropdown-menu" aria-labelledby="menu3Dropdown">
                                 <li><a class="dropdown-item" href="#">Aggiungi nuovo Dispositivo</a></li>
                                 <li><a class="dropdown-item" href="#">Esci dall'account</a></li>
                                 <li><a class="dropdown-item" href="#">Impostazioni Profilo</a></li>
                             </ul>
                         </div>
-                    </div>   
-                </div>
+                    </section>   
+                </section>
                 <!-- Notification row -->
-                <div class="notification-row">
+                <section class="notification-row">
                     <div class="notification-icon">
                       <i class="fas fa-bell-slash"></i>
                     </div>
@@ -57,72 +58,77 @@
                         <span>Ricevi notifiche di nuovi messaggi</span>
                         <span id="notification-text" @click="toggleNotificationsActive">Attiva notifiche desktop</span>
                     </div>
-                </div>                  
+                </section>                  
                 <!-- Search row messages -->
-                <div class="search-row">
+                <section class="search-row">
                     <div class="search-bar">
                         <span class="search-icon"><i class="fas fa-search"></i></span>
                         <input v-model.trim="filtredContacts" @input="researchContacts" type="text" placeholder=" Cerca o inizia una nuova chat" />
                     </div>
-                </div>
+                </section>
                 <!-- Message list and contacts -->
-                <ul class="message-list scrollbar" id="contacts">
-                    <li @click="chatSwitch(index)" v-for="(chat, index) in filteredContacts" :key="chat.id" :class="{ active: selectedChat === chat }" class="user-image mb-1 py-2 contact" @click="selectChat(chat)">
-                        <img :src="getAvatarImagePath(chat.avatar)" alt="chat.name">
-                        <span>{{ chat.name }}</span>
-                    </li>
-                </ul>
-            </div>
+                <section class="scrollbar">
+                    <ul class="message-list" id="contacts">
+                        <li @click="chatSwitch(index) ,selectChat(chat)" v-for="(chat, index) in filteredContacts" :key="chat.id" :class="{ active: selectedChat === chat }" class="user-image mb-1 py-2 contact">
+                            <img :src="getAvatarImagePath(chat.avatar)" alt="chat.name">
+                            <span>{{ chat.name }}</span>
+                        </li>
+                    </ul>
+                </section>
+            </section>
             <!-- Col Chats -->
-            <div class="col-chats">
-                <div class="user-row">
-                    <div class="user-image">
+            <section class="col-chats">
+                <!-- User Row -->
+                <section class="user-row">
+                    <section class="user-image">
                         <img :src="getAvatarImagePath(contacts[activeChat].avatar)" alt="">
                         <div class="infos">
                             <span>{{ contacts[activeChat].name }}</span>
                             <span id="access">Ultimo accesso oggi alle</span>
                         </div>
-                    </div>
-                    <div class="icon-section">
+                    </section>
+                    <!-- Icon User Row -->
+                    <section class="icon-section">
                         <div class="dropdown">
-                            <i class="fas fa-search icons" id="menu1Dropdown" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                            <i class="fas fa-search icons" id="menu4Dropdown" data-bs-toggle="dropdown"></i>
                             <ul class="dropdown-menu" aria-labelledby="menu1Dropdown">
                                 <li><a class="dropdown-item" href="#">Cerca messaggio</a></li>
                             </ul>
                         </div>
                         <div class="dropdown">
-                            <i class="fas fa-paperclip icons" id="menu2Dropdown" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                            <i class="fas fa-paperclip icons" id="menu5Dropdown" data-bs-toggle="dropdown"></i>
                             <ul class="dropdown-menu" aria-labelledby="menu2Dropdown">
                                 <li><a class="dropdown-item" href="#">Aggiungi file</a></li>
                             </ul>
                         </div>
                         <div class="dropdown">
-                            <i class="fas fa-ellipsis-v icons" id="menu3Dropdown" data-bs-toggle="dropdown" aria-expanded="false"></i>                        
+                            <i class="fas fa-ellipsis-v icons" id="menu6Dropdown" data-bs-toggle="dropdown"></i>                        
                             <ul class="dropdown-menu" aria-labelledby="menu3Dropdown">
                                 <li><a class="dropdown-item" href="#">Elimina chat</a></li>
                                 <li><a class="dropdown-item" href="#">Elimina contatto</a></li>
                                 <li><a class="dropdown-item" href="#">Visualizza profilo</a></li>
                             </ul>
                         </div>
-                    </div>
-                </div>
-                <div class="message-section">
+                    </section>
+                </section>
+                <!-- Chat Section -->
+                <section class="message-section">
                     <div v-for="element in contacts[activeChat].messages" class="message">
                         <div :class="element.status === 'received' ? 'received' :'sent'" class="message-box">
                             <span  :class="(element.status === 'received' ? 'received-color':'sent-color') + ' message'" class="main-text">{{ element.message }}
-                                <span class="date">{{ element.date }}</span>
-                            </span> 
+                                <p id="date-message">{{ element.date }}</p></span> 
                         </div>                 
                     </div>
-                </div>
-                <div class="footer-rightcol">
+                </section>
+                <!-- Chat Input Message -->
+                <section class="footer-rightcol">
                     <i class="far fa-smile"></i>
                     <div class="send-message">
                         <input type="text" placeholder="  Scrivi un messaggio" v-model="newMessage" @keyup.enter= "sendNewMessage(); setTimeout();">
                     </div>
                     <i class="fas fa-microphone"></i>
-                </div>
-            </div>
+                </section>
+            </section>
         </div>
     </main>
     <!-- VueJs -->

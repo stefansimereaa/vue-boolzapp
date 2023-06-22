@@ -22,9 +22,15 @@ main{
     overflow: hidden;
 }
 
+.col-contacts .user-row .user-image img,
+.col-chats .user-row .user-image img{
+    height: 50px;
+    border-radius: 50%;
+}
 /* Dimensions Cols */
 .col-contacts{
     width: 30%;
+    background-color: white;
 }
 .col-chats{
     width: 70%;
@@ -44,12 +50,6 @@ main{
 
 .col-contacts .user-row{
     border-left: 1px solid #d7d7d7;
-}
-
-.col-contacts .user-row .user-image img,
-.col-chats .user-row .user-image img{
-    height: 50px;
-    border-radius: 50%;
 }
 
 .user-image img{
@@ -164,6 +164,7 @@ main{
 
 #contacts{
     padding-left: 0rem;
+    padding: 10px;
 }
 
 /* Hover contacts */
@@ -216,7 +217,7 @@ main{
 
 .message{
     min-width: 35%;
-    border: 1px solide none;
+    border: none;
     border-radius: 10px;
     padding: 20px 8px;
 }
@@ -252,4 +253,9 @@ main{
     bottom: 4px;
     right: 10px;
     color: #b7b9bc;
+}
+
+#date-message{
+    font-size: 10px;
+    margin: 0px;
 }
