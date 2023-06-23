@@ -117,10 +117,10 @@
                 </section>
                 <!-- Chat Section -->
                 <section class="message-section">
-                    <div v-for="element in contacts[activeChat].messages" class="message">
-                        <div :class="element.status === 'received' ? 'received' :'sent'" class="message-box">
-                            <span  :class="(element.status === 'received' ? 'received-color':'sent-color') + ' message'" class="main-text">{{ element.message }}
-                                <p id="date-message">{{ element.date }}</p></span> 
+                    <div v-for="message in contacts[activeChat].messages" class="message">
+                        <div :class="message.status === 'received' ? 'received' :'sent'" class="message-box">
+                            <span  :class="(message.status === 'received' ? 'received-color':'sent-color') + ' message'" class="main-text">{{ message.message }}
+                                <p id="date-message">{{ message.date }}</p></span> 
                         </div>           
                     </div>
                 </section>
