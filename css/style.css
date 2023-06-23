@@ -178,6 +178,7 @@ main{
     background-color: #039588;
     cursor: pointer;
 } 
+/************/
 /* Col Chats */
 .message-section{
     width: 100%;
@@ -217,7 +218,7 @@ main{
 }
 
 .main-text{
-    font-size: 18px;
+    font-size: 15px;
     color: black;
 }
 
