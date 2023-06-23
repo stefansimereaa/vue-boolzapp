@@ -230,7 +230,6 @@ const app = createApp({
             return '';
           });
         },
-
         // Funzione per ottenere il testo dell'ultimo messaggio
         lastMessageText() {
           return this.contacts.map((contact) => {
