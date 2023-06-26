@@ -69,7 +69,7 @@
                 <!-- Message list and contacts -->
                 <section class="scrollbar">
                     <ul class="message-list" id="contacts">
-                        <li @click="chatSwitch(index) ,selectChat(chat)" v-for="(chat, index) in filteredContacts" :key="chat.id" :class="{ active: selectedChat === chat }" class="user-image mb-1 py-2 contact">
+                        <li @click="chatSwitch(index)" v-for="(chat, index) in filteredContacts" :key="chat.id" class="user-image mb-1 py-2 contact">
                             <img :src="getAvatarImagePath(chat.avatar)" alt="chat.name">
                             <span>{{ chat.name }}
                                 <p class="last-message-date">{{ lastMessageDate[index] }} {{ lastMessageText[index] }}</p>

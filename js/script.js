@@ -12,7 +12,6 @@ const app = createApp({
             showMenu1: false,
             newMessage: '',
             filtredContacts: '',
-            filteredContacts: [],
             user: {
                 name: 'Nome Utente',
                 avatar: '_io'
@@ -215,11 +214,15 @@ const app = createApp({
     computed: {
         //Funzione per filtrare la ricerca attraverso la search bar per i contatti
         researchContacts() {
-            const filtered = this.filtredContacts.toLowerCase();
-            this.filteredContacts = this.contacts.filter((contact) => {
-            return contact.name.toLowerCase().includes(filtered);
-            });
+          const filtered = this.filtredContacts.toLowerCase();
+          this.filteredContacts = this.contacts.map((contact) => {
+            if (contact.name.toLowerCase().includes(filtered)) {
+              return contact;
+            }
+            return null;
+          }).filter((contact) => contact !== null);
         },
+        
         // Funzione per ottenere la data dell'ultimo messaggio
         lastMessageDate() {
           return this.contacts.map((contact) => {
@@ -257,10 +260,11 @@ const app = createApp({
         },
 
         // Funzione per selezionare la chat dai contatti
-        chatSwitch: function(index){
-            this.activeChat = index;
+        chatSwitch(index) {
+          const contactIndex = this.contacts.map(contact => contact.id).indexOf(index);
+          this.activeChat = contactIndex;
         },
-
+        
         // Funzione per inviare un nuovo messaggio tramite l input
         sendNewMessage() {
             const activeChat = this.contacts[this.activeChat];
